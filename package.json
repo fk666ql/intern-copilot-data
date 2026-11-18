@@ -1,0 +1,22 @@
+{
+  "name": "intern-copilot-data",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "sync": "tsx scripts/sync.ts",
+    "validate:data": "tsx scripts/validate-data.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/he": "^1.2.3",
+    "@types/node": "22.19.19",
+    "he": "^2.0.0",
+    "node-html-parser": "^9.0.7",
+    "tsx": "^4.23.15",
+    "typescript": "5.9.3"
+  }
+}
