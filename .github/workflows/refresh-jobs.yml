@@ -1,0 +1,54 @@
+name: refresh-jobs
+
+on:
+  schedule:
+    - cron: "17 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-jobs
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh public job snapshot
+        run: npm run sync
+
+      - name: Validate snapshot
+        run: npm run validate:data
+
+      - name: Copy snapshot to Pages directory
+        run: |
+          mkdir -p docs/data
+          cp public/data/jobs.json docs/data/jobs.json
+          cp public/data/meta.json docs/data/meta.json
+
+      - name: Commit refreshed snapshot
+        run: |
+          git config user.name "intern-copilot-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/data/jobs.json public/data/meta.json docs/data/jobs.json docs/data/meta.json
+          if git diff --cached --quiet; then
+            echo "No snapshot changes"
+          else
+            git commit -m "chore: refresh job snapshot"
+            git push
+          fi
