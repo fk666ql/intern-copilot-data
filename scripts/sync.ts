@@ -30,7 +30,7 @@ async function main() {
   const [ncss, greenhouse] = await Promise.all([
     // I1（生产数据安全）：绝不传 useFixtureOnFailure，
     // 禁止 fixture 降级数据混入真实岗位快照；失败就如实记录 error。
-    fetchNcssJobs({ maxPages: 10, enrichLimit: 100 }).catch((error) => ({
+    fetchNcssJobs({ maxPages: 10, enrichLimit: 120 }).catch((error) => ({
       jobs: [] as JobRecord[],
       error: error instanceof Error ? error.message : "ncss failed",
     })),
