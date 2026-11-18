@@ -24,4 +24,4 @@ npm run validate:data
 
 ## 发布
 
-工作流先把新快照提交到 `main`，再把 `public/data` 复制到 `site/data` 并部署到 GitHub Pages。Pages 仅发布数据目录。
+工作流把新快照提交到 `main`，同时复制到 `docs/data`；GitHub Pages 从 `main` 的 `/docs` 目录构建，只发布数据目录。
