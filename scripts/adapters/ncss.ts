@@ -132,7 +132,7 @@ export async function fetchNcssJobs(options: {
     for (let page = 1; page <= maxPages; page += 1) {
       const url = new URL(LIST_URL);
       url.searchParams.set("jobType", "03");
-      url.searchParams.set("offset", String(page));
+      url.searchParams.set("offset", String(page - 1));
       url.searchParams.set("limit", "20");
       const response = await fetchWithRetry(url.toString(), { headers: HEADERS });
       if (!response.ok) throw new Error(`NCSS list HTTP ${response.status}`);
