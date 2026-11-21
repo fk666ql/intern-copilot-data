@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-20T00:39:15.073Z",
-  "total": 405,
+  "generatedAt": "2026-11-21T00:01:11.172Z",
+  "total": 399,
   "sources": [
     {
       "name": "NCSS 国家大学生就业服务平台",
@@ -9,7 +9,7 @@
     },
     {
       "name": "Greenhouse 企业直发",
-      "count": 332,
+      "count": 330,
       "ok": true
     }
   ]
